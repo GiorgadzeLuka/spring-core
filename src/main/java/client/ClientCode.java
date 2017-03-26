@@ -1,32 +1,30 @@
 package client;
 
-import beans.Developer;
-import beans.Project;
+import bean.Developer;
+import bean.Manager;
+import bean.Project;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ClientCode {
 
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
-        Developer developer = (Developer) context.getBean("dev");
-        System.out.println(developer);
 
-        Developer intern = context.getBean("intern", Developer.class);
-        intern.setLevel(1);
-        intern.setSkill("Kotlin");
-        System.out.println(intern);
+        Developer dev = context.getBean("developerA", Developer.class);
+        System.out.println(dev);
+        System.out.println("");
 
-        Developer dotNetDev = context.getBean("dotNetDev", Developer.class);
-        System.out.println(dotNetDev);
+        Manager manager = context.getBean("manager", Manager.class);
+        System.out.println(manager);
+        System.out.println("");
 
-        Developer anonymous = context.getBean("anonymous", Developer.class);
-        System.out.println(anonymous);
+        Project project = context.getBean("wk", Project.class);
+        System.out.println(project);
+        System.out.println("");
 
-        Project startup = context.getBean("startup", Project.class);
-        System.out.println(startup);
+        ((AbstractApplicationContext) context).close();
 
-        Project javaProject = context.getBean("java10", Project.class);
-        System.out.println(javaProject);
     }
 }
