@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="dev" class="beans.Developer">
+        <constructor-arg value="John Doe"/>
+        <constructor-arg value="Java"/>
+        <constructor-arg value="1"/>
+        <constructor-arg value="true"/>
+    </bean>
+
+    <bean id="intern" class="beans.Developer">
+        <constructor-arg value="Intern John Doe"/>
+    </bean>
+
+    <bean id="dotNetDev" class="beans.Developer">
+        <constructor-arg index="1" value="DotNet"/>
+        <constructor-arg index="0" value="Peter"/>
+        <constructor-arg value="2"/>
+        <constructor-arg value="false"/>
+    </bean>
+
+    <bean id="anonymous" class="beans.Developer">
+        <constructor-arg type="int" value="15"/>
+    </bean>
+
+    <bean id="newProject" name="startup bigMoneyMaker" class="beans.Project">
+        <constructor-arg value="startup project"/>
+        <constructor-arg ref="dev"/>
+    </bean>
+
+    <bean id="java10" name="java project" class="beans.Project">
+        <property name="name" value="Java project. New release"/>
+        <property name="teamLead" value="dev"/>
+    </bean>
+</beans>
