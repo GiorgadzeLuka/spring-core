@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
+
+    <bean id="userManager" class="bean.UserManagerBean"/>
+    <bean id="eventManager" class="bean.EventManagerBean"/>
+    <bean id="ticketManager" class="bean.TicketManagerBean"/>
+
+    <bean id="admin" class="model.Admin">
+        <property name="name" value="John Doe"/>
+    </bean>
+
+    <bean id="userA" class="model.User">
+        <constructor-arg value="Jack"/>
+    </bean>
+    <bean id="userB" class="model.User">
+        <constructor-arg value="Michelle"/>
+    </bean>
+
+</beans>
