@@ -5,74 +5,19 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
-    <bean id="initBean" class="bean.InitBean"/>
-    <bean id="bpp" class="processor.CustomBeanPostProcessor"/>
+    <bean id="userManager" class="bean.UserManagerBean"/>
+    <bean id="eventManager" class="bean.EventManagerBean"/>
+    <bean id="ticketManager" class="bean.TicketManagerBean"/>
 
-    <bean id="parentEngineer" class="bean.Engineer">
-        <property name="name" value="John"/>
-        <property name="skill" value="Java"/>
-        <property name="level" value="2"/>
+    <bean id="admin" class="model.Admin">
+        <property name="name" value="John Doe"/>
     </bean>
 
-    <bean id="developerA" class="bean.Developer" parent="parentEngineer">
-        <property name="frameworkToYears">
-            <map>
-                <entry key="Spring" value="3"/>
-                <entry key="Hibernate" value="2"/>
-                <entry key="Mockito" value="1"/>
-            </map>
-        </property>
+    <bean id="userA" class="model.User">
+        <constructor-arg value="Jack"/>
     </bean>
-
-    <bean id="developerB" class="bean.Developer">
-        <property name="name" value="Joe"/>
-        <property name="skill" value="Java"/>
-        <property name="level" value="3"/>
-        <property name="frameworkToYears">
-            <map>
-                <entry key="Spring" value="3"/>
-                <entry key="Hibernate" value="2"/>
-                <entry key="Mockito" value="1"/>
-            </map>
-        </property>
+    <bean id="userB" class="model.User">
+        <constructor-arg value="Michelle"/>
     </bean>
-
-    <bean id="autoTesterA" class="bean.AutomationTester">
-        <property name="name" value="Alexey"/>
-        <property name="skill" value="Python"/>
-        <property name="level" value="1"/>
-        <property name="favouriteFramework" value="Django"/>
-        <property name="bro" value="true"/>
-    </bean>
-
-    <util:set id="team" set-class="java.util.HashSet">
-        <ref bean="developerA"/>
-        <ref bean="developerB"/>
-        <ref bean="autoTesterA"/>
-    </util:set>
-
-    <bean id="manager" class="bean.Manager" init-method="initManager">
-        <property name="name" value="Ivo"/>
-        <property name="emailPerHour">
-            <util:constant static-field="java.lang.Math.PI"/>
-        </property>
-        <property name="engineers" ref="team"/>
-    </bean>
-
-    <bean id="wk" class="bean.Project" init-method="initProject" destroy-method="finishProject">
-        <constructor-arg value="backend and UI for WK"/>
-        <constructor-arg>
-            <list>
-                <ref bean="developerA"/>
-                <ref bean="developerB"/>
-                <ref bean="autoTesterA"/>
-                <ref bean="manager"/>
-            </list>
-        </constructor-arg>
-    </bean>
-
-    <bean id="devFactory" class="bean.DeveloperFactory"/>
-
-    <bean id="factoryDev" class="bean.Developer" factory-bean="devFactory" factory-method="createDeveloper"/>
 
 </beans>
