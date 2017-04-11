@@ -1,0 +1,1 @@
+Spring app using java config and the properties placeholder configurer
