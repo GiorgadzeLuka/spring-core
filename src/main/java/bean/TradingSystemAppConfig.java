@@ -19,7 +19,12 @@ public class TradingSystemAppConfig {
 
     @Bean
     public StockGenerator stockGenerator() {
-        return new StockGenerator(Integer.valueOf(stocksAmount));
+        return new StockGenerator(propertyHolder().stocksAmount());
+    }
+
+    @Bean
+    public PropertyHolder propertyHolder() {
+        return new PropertyHolder();
     }
 
     @Bean
