@@ -8,9 +8,11 @@
     <bean id="userManager" class="bean.UserManagerBean"/>
     <bean id="eventManager" class="bean.EventManagerBean"/>
     <bean id="ticketManager" class="bean.TicketManagerBean"/>
+    <bean id="emulator" class="bean.MovieTheaterSystemEmulator"/>
 
     <bean id="admin" class="model.Admin">
         <property name="name" value="John Doe"/>
+        <property name="active" value="true"/>
     </bean>
 
     <bean id="userA" class="model.User">

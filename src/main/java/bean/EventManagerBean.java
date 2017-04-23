@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class EventManagerBean {
     private static Set<Event> events = new HashSet<>();
@@ -15,24 +16,16 @@ public class EventManagerBean {
     }
 
     public Event findEventByName(String eventName) {
-        Event resultEvent = null;
-        for (Event event : events) {
-            if (Objects.equals(event.getEventName(), eventName)) {
-                resultEvent = event;
-            }
-        }
-        return resultEvent;
+        return events.stream()
+                .filter(event -> Objects.equals(event.getEventName(), eventName))
+                .findFirst()
+                .get();
     }
 
     public Set<Event> findEventsByDate(LocalDateTime fromDate, LocalDateTime toDate) {
-        Set<Event> resultEvents = new HashSet<>();
-        for (Event event : events) {
-            LocalDateTime eventDate = event.getEventDate();
-            if (eventDate.isAfter(fromDate) && eventDate.isBefore(toDate)) {
-                resultEvents.add(event);
-            }
-        }
-        return resultEvents;
+        return events.stream()
+                .filter(event -> event.getEventDate().isAfter(fromDate) && event.getEventDate().isBefore(toDate))
+                .collect(Collectors.toSet());
     }
 
     public double getEventTicketPrice(String eventName) {
