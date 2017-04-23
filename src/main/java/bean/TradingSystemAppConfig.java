@@ -1,6 +1,5 @@
 package bean;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -9,8 +8,6 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 @PropertySource("classpath:config.properties")
 public class TradingSystemAppConfig {
-    @Value("${stocks.amount:10}")
-    private String stocksAmount;
 
     @Bean
     public TradingSystem tradingSystem() {
@@ -23,8 +20,13 @@ public class TradingSystemAppConfig {
     }
 
     @Bean
-    public PropertyHolder propertyHolder() {
-        return new PropertyHolder();
+    public StockAmountPropertyHolder propertyHolder() {
+        return new StockAmountPropertyHolder();
+    }
+
+    @Bean
+    public TradingSystemUsageEmulator emulator() {
+        return new TradingSystemUsageEmulator();
     }
 
     @Bean
