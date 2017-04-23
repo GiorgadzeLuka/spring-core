@@ -1,3 +1,4 @@
+import bean.ServiceUsageEmulator;
 import bean.Ticket;
 import bean.TicketBookingConfig;
 import bean.TicketBookingService;
@@ -10,10 +11,7 @@ public class Runner {
 
     public static void main(String[] args) {
         AbstractApplicationContext context = new AnnotationConfigApplicationContext(TicketBookingConfig.class);
-
-        TicketBookingService bookingSystem = context.getBean(TicketBookingService.class);
-
-        List<Ticket> tickets = bookingSystem.getAvailableTickets();
-        bookingSystem.buyTicket(tickets.get(0));
+        ServiceUsageEmulator usageEmulator = context.getBean(ServiceUsageEmulator.class);
+        usageEmulator.emulate(context);
     }
 }

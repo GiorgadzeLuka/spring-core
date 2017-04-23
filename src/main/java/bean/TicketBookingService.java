@@ -10,9 +10,6 @@ public class TicketBookingService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    public TicketBookingService() {
-    }
-
     public TicketBookingService(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
     }
